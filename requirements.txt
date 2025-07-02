@@ -1,0 +1,13 @@
+mcp
+pypdf
+geopy
+gradio
+chromadb
+langchain
+langgraph
+langchain_groq
+langchain-chroma
+langchain-community
+langchain-huggingface
+langchain-mcp-adapters
+sentence-transformers
