@@ -13,6 +13,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import CharacterTextSplitter
+from fastapi.middleware.cors import CORSMiddleware
 
 
 load_dotenv()
@@ -146,5 +147,10 @@ def rag_tool(query: str) -> str:
 
 app = mcp.streamable_http_app
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
