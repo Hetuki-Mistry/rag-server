@@ -13,6 +13,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import CharacterTextSplitter
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -145,7 +146,11 @@ def rag_tool(query: str) -> str:
     return answer
 
 
-app = mcp.streamable_http_app()
+mcp_app = mcp.streamable_http_app()
+
+app = FastAPI()
+
+app.mount("/mcp", mcp_app)
 
 app.add_middleware(
     CORSMiddleware,
