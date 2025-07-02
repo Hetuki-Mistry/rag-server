@@ -145,7 +145,7 @@ def rag_tool(query: str) -> str:
     return answer
 
 
-app = mcp.streamable_http_app
+app = mcp.streamable_http_app()
 
 app.add_middleware(
     CORSMiddleware,
